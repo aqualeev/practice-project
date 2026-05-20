@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Создание научно-популярного контента | Проектный отчёт</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #fefefe;
+            color: #111827;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .site-header {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .nav-bar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: linear-gradient(130deg, #0b3b5f, #1b7aa2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1f3b4c;
+            transition: 0.2s;
+            font-size: 1rem;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-menu a:hover {
+            color: #1b6b8f;
+            border-bottom-color: #1b6b8f;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.8rem;
+        }
+
+        section {
+            padding: 3.5rem 0;
+            border-bottom: 1px solid #e9edf2;
+            scroll-margin-top: 85px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.6rem;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(120deg, #0f3b4f, #2c6e8f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 70%;
+            height: 3px;
+            background: #2c7da0;
+            border-radius: 4px;
+        }
+
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.6rem;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.03), 0 0 0 1px #edf2f7;
+            transition: 0.2s ease;
+            flex: 1 1 260px;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #1e4a6b;
+        }
+
+        .role {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #2c7da0;
+            margin-bottom: 0.7rem;
+            letter-spacing: 0.3px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e6f0f5;
+            color: #166b8f;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            margin-top: 0.8rem;
+            font-weight: 500;
+        }
+
+        .journal-item {
+            background: white;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid #2c7da0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .journal-date {
+            font-weight: 600;
+            color: #2c7da0;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .journal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0.4rem 0 0.5rem;
+        }
+
+        .resources-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .resources-list a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1f6392;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px dashed #bdd4e4;
+            width: fit-content;
+            transition: 0.2s;
+        }
+
+        .resources-list a:hover {
+            color: #0e4b6e;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: #5b6e8c;
+            font-size: 0.85rem;
+            background: #f8fafd;
+            border-top: 1px solid #e2edf2;
+        }
+
+        .team-note {
+            background: #f0f6fa;
+            border-radius: 28px;
+            padding: 1.2rem 1.8rem;
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 1rem;
+            color: #1c4c6e;
+            border: 1px solid #dcebf3;
+        }
+
+        @media (max-width: 700px) {
+            .nav-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+            section {
+                padding: 2.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="nav-bar">
+        <div class="logo">
+            <h2>📘 Научпоп | Создание контента</h2>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#abstract">Главная</a></li>
+            <li><a href="#about">О проекте</a></li>
+            <li><a href="#members">Участники</a></li>
+            <li><a href="#journal">Журнал</a></li>
+            <li><a href="#resources">Ресурсы</a></li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <section id="abstract">
+            <span class="section-title">📌 Аннотация проекта</span>
+            <div style="margin-top: 1rem; font-size: 1.05rem; background: #f3f9fe; padding: 1.8rem; border-radius: 28px;">
+                <p style="font-size: 1.2rem; font-weight: 500; margin-bottom: 0.8rem;">🎯 Название: «Создание научно-популярного контента»</p>
+                <p><strong>Суть проекта:</strong> Разработка и публикация качественного научно-популярного контента (статьи, видео, инфографика, посты в соцсетях), направленного на популяризацию науки среди широкой аудитории — школьников, студентов и всех интересующихся. Проект объединяет современные медиаформаты с проверенными научными фактами.</p>
+                <p style="margin-top: 1rem;"><strong>Цель:</strong> Повысить интерес к науке через доступное и увлекательное объяснение сложных концепций, а также сформировать сообщество вокруг научного просвещения в цифровой среде.</p>
+            </div>
+        </section>
+
+        <section id="about">
+            <span class="section-title">🔬 О проекте</span>
+            <div class="card-grid" style="margin-top: 1.2rem;">
+                <div class="card">
+                    <h3>📖 Проблематика</h3>
+                    <p>В современном медиапространстве много псевдонауки и поверхностных материалов. Качественный, проверенный научпоп часто остаётся в тени. Аудитории не хватает системных, визуально привлекательных и достоверных объяснений.</p>
+                </div>
+                <div class="card">
+                    <h3>⚡ Актуальность</h3>
+                    <p>Запрос на научное мышление растёт. Популяризация науки помогает бороться с мифами, развивает критическое мышление и мотивирует молодёжь выбирать STEM-направления. Актуально для онлайн-школ, блогов, образовательных платформ.</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 Задачи проекта</h3>
+                    <p>— Создать серию научно-популярных материалов (тексты, видео, карточки).<br>
+                    — Разработать стиль подачи: от физики до биологии и астрономии.<br>
+                    — Распространять контент в Telegram, VK, MAX.<br>
+                    — Измерить вовлечённость и обратную связь.</p>
+                </div>
+            </div>
+            <div style="background: #f4f9fe; border-radius: 28px; padding: 1.6rem; margin-top: 1.8rem;">
+                <p style="font-weight: 600; font-size: 1.1rem;">📈 Целевая аудитория:</p>
+                <p>Школьники 14–18 лет, студенты младших курсов, преподаватели, а также взрослые, интересующиеся наукой без отрыва от работы. Форматы: короткие ролики (Reels, Shorts), лонгриды с иллюстрациями, подкасты.</p>
+            </div>
+        </section>
+
+        <section id="members">
+            <span class="section-title">👥 Участники команды</span>
+
+            <!-- Руководитель проекта (отдельно) -->
+            <div style="margin-bottom: 1.8rem;">
+                <div class="card" style="max-width: 100%; background: linear-gradient(105deg, #fff 0%, #f7fcff 100%); border-left: 6px solid #2c7da0;">
+                    <h3>👩‍💼 Марианна Осьминова</h3>
+                    <div class="role">Руководитель проекта / главный редактор</div>
+                    <p>Формирует общую стратегию создания научно-популярного контента, отвечает за методологию, финальную проверку материалов и взаимодействие с внешними экспертами. Координирует работу всех 23 участников.</p>
+                    <div class="badge">Project lead</div>
+                </div>
+            </div>
+
+            <!-- 4 ключевых участника -->
+            <div class="card-grid">
+                <div class="card">
+                    <h3>🧑‍💻 Карим Валеев</h3>
+                    <div class="role">Сценарист / программист</div>
+                    <p>Разрабатывает сценарии для видео и подкастов, адаптирует сложные научные статьи под формат научпопа.</p>
+                    <div class="badge">Текст и сторителлинг</div>
+                </div>
+                <div class="card">
+                    <h3>🎨 Александра Волкова</h3>
+                    <div class="role">Главный дизайнер и аниматор</div>
+                    <p>Создаёт иллюстрации, динамическую инфографику и визуальные метафоры для объяснения научных концепций.</p>
+                    <div class="badge">Motion & графический дизайн</div>
+                </div>
+                <div class="card">
+                    <h3>📢 Егор Сипухов</h3>
+                    <div class="role">Ведущий SMM-менеджер</div>
+                    <p>Управляет публикациями во всех соцсетях, запускает виральные форматы (Reels, карусели) и анализирует метрики.</p>
+                    <div class="badge">Community growth</div>
+                </div>
+                <div class="card">
+                    <h3>🔬 Александра Фомакина</h3>
+                    <div class="role">Научный консультант</div>
+                    <p>Проверяет факты, помогает находить первоисточники и переводить академический язык на доступный.</p>
+                    <div class="badge">Science advisor</div>
+                </div>
+            </div>
+
+            <div class="team-note">
+                🤝 <strong>+ ещё 19 участников команды</strong><br>
+                В проекте также задействованы: редакторы, операторы, иллюстраторы, видеоинженеры, контент-аналитики, лингвисты (адаптация текстов), тестировщики гипотез и менеджеры сообществ.  
+                Благодаря слаженной работе всех 24 человек мы выпускаем качественный научно-популярный контент еженедельно.
+            </div>
+        </section>
+
+        <section id="journal">
+            <span class="section-title">📆 Журнал работ</span>
+            <div style="margin-top: 1.2rem;">
+                <div class="journal-item">
+                    <div class="journal-date">Февраль 2026</div>
+                    <div class="journal-title">🎙️ Новые выпуски рубрики «Вопросы учёному»</div>
+                    <p>Гости - Егор Мусин, Александр Ким и Кирилл Дмитриев. Мы задали иим вопросы, которые обычно не услышишь на научных конференциях!</p>
+                </div>
+                <div class="journal-item">
+                    <div class="journal-date">Март 2026</div>
+                    <div class="journal-title">👨‍🍳 Новый выпуск «Научной кухни»</div>
+                    <p>Наш гость — Сергей Марданов, заместитель генерального директора по развитию бизнеса частной космической компании «SR Space».</p>
+                </div>
+                <div class="journal-item">
+                    <div class="journal-date">Апрель 2026</div>
+                    <div class="journal-title">📸 Мероприятие «Наука в фотографиях»</div>
+                    <p>СНО Московского Политеха приглашает студентов, школьников и всех обучающихся колледжей России и зарубежья участвовать в Международном фотоконкурсе «Наука в фотографиях».</p>
+                </div>
+                <div class="journal-item">
+                    <div class="journal-date">Май 2026</div>
+                    <div class="journal-title">🧪 Запуск интерактивного квеста «День научного кино»</div>
+                    <p>Что, если бы вы могли влиять на главного героя прямо во время просмотра? Материалы выкладываются в группе ВКонтакте.</p>
+                </div>
+            </div>
+            <div style="margin-top: 1.2rem; background: #eef4fa; border-radius: 20px; padding: 1rem 1.5rem;">
+                <p>📊 <strong>Итоги на текущий момент:</strong> 14 единиц контента (видео, статьи, подкасты), суммарный охват > 3 000, прирост аудитории в соцсетях на 12%.</p>
+            </div>
+        </section>
+
+        <section id="resources">
+            <span class="section-title">📚 Ресурсы и литература</span>
+            <div class="resources-list">
+                <a href="#">📘 Ричард Фейнман — «Вы, конечно, шутите, мистер Фейнман!»</a>
+                <a href="#">🔬 Карл Саган — «Космос. Эволюция Вселенной, жизни и цивилизации»</a>
+                <a href="#">🧠 Ася Казанцева — «В интернете кто-то неправ!»</a>
+                <a href="#">🎥 YouTube-каналы: Vert Dider, SciOne, Микитко сын Алексеев</a>
+                <a href="#">📄 ГОСТ Р 7.0.5-2008 — оформление научно-популярных ссылок</a>
+                <a href="#">🌐 Открытые библиотеки: arXiv.org, ПостНаука, Элементы большой науки</a>
+                <a href="#">🎨 Инструменты: Canva, DaVinci Resolve, Figma, Audacity</a>
+            </div>
+            <div style="margin-top: 1.5rem; background: #fff9ef; border-left: 5px solid #2c7da0; padding: 1rem 1.5rem; border-radius: 20px;">
+                <p>📌 <strong>Примечание:</strong> все ссылки на литературу и ресурсы являются рабочими рекомендациями. При создании материалов используется принцип CC и соблюдение авторских прав.</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>© 2026 — Проект «Создание научно-популярного контента» | Отчёт по проектной деятельности</p>
+    <p style="margin-top: 0.4rem;">✉️ Контакт: valeev.karim2004@mail.ru</p>
+</footer>
+
+</body>
+</html>
